@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>山东旅游知识问答 · 好客山东 AI 向导</title>
+<meta name="description" content="基于山东16地市旅游知识库的智能问答助手：景点、美食小吃、酒店住宿、路线行程、节庆民俗、避雷指南，随时提问，随时开走。">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <button class="icon-btn only-mobile" id="btnAside" aria-label="展开侧栏">☰</button>
+      <div class="logo" aria-hidden="true">鲁</div>
+      <div class="brand-txt">
+        <h1>山东旅游知识问答</h1>
+        <p>好客山东 · 基于 16 地市旅游知识库的 AI 向导</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <label class="model-pick" title="选择大模型">
+        <span class="dot" id="modelDot"></span>
+        <select id="modelSelect" aria-label="选择大模型"><option>模型加载中…</option></select>
+      </label>
+      <button class="ghost-btn" id="btnNew">新对话</button>
+      <button class="ghost-btn" id="btnClear">清空记录</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <section class="panel">
+        <h3>知识库范围</h3>
+        <p class="muted" id="kbStat">正在载入知识库…</p>
+        <div class="chips" id="cityChips"></div>
+        <div class="filter-row">
+          <button class="mini-btn" id="btnAllCities">全部城市</button>
+          <span class="muted tiny" id="filterState">未限定城市</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h3>直接问</h3>
+        <div class="samples" id="samples"></div>
+      </section>
+
+      <section class="panel">
+        <h3>知识库来源</h3>
+        <ul class="src-list" id="srcList"></ul>
+      </section>
+    </aside>
+
+    <main class="chat">
+      <div class="messages" id="messages"></div>
+
+      <form class="composer" id="composer" autocomplete="off">
+        <textarea id="input" rows="1" placeholder="问我任何关于山东旅游的问题，例如：3天时间第一次去山东怎么安排？"></textarea>
+        <div class="composer-side">
+          <button type="submit" class="send-btn" id="btnSend" aria-label="发送">发送</button>
+          <button type="button" class="stop-btn hidden" id="btnStop">停止</button>
+        </div>
+      </form>
+      <p class="disclaimer">回答由 AI 依据内置知识库生成；价格、班次、政策等以出行当日官方实时信息为准。</p>
+    </main>
+  </div>
+</div>
+
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <strong id="drawerTitle">知识库原文</strong>
+    <button class="icon-btn" id="drawerClose" aria-label="关闭">✕</button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+</aside>
+<div class="scrim" id="scrim" hidden></div>
+
+<script src="vendor/workbuddy-cloud-sdk.js"></script>
+<script src="kb-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
